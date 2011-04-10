@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="build_flex" default="build-flex">
+	<taskdef resource="flexTasks.tasks" classpath="${flexlib.dir}/flexTasks.jar" />
+
+	<path id="libraries">
+		<fileset dir="${flexlib.dir}">
+			<include name="**/*.jar" />
+			<include name="**/*.swc" />
+		</fileset>
+	</path>
+
+	<!-- delete and create the DEPLOY dir again -->
+	<target name="init">
+		<!-- <delete dir="${DEPLOY_DIR}" /> -->
+		<mkdir dir="${DEPLOY_DIR}" />
+	</target>
+
+	<!-- Build and output the Main.swf -->
+	<target name="compile" depends="init">
+		<mxmlc file="${src.flex.dir}/${main}.mxml" output="${DEPLOY_DIR}/${main}.swf">
+			<load-config filename="${FLEX_HOME}/frameworks/flex-config.xml" />
+			<source-path path-element="${FLEX_HOME}/frameworks" />
+			<compiler.debug>true</compiler.debug>
+			
+			<library-path dir="${FLEX_HOME}/frameworks/libs" append="true">
+				<include name="*.swc" />
+			</library-path>
+			 <compiler.library-path dir="${flexlib.dir}" append="true" includes="*"/> 
+		</mxmlc>
+	</target>
+	<target name="build-flex" depends="compile">
+
+	</target>
+
+
+</project>
+    
