@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<project name="java-flex-robotlegs" default="build-flex" basedir=".">
+	<property file="build.properties"/>
+	<import file="build_flex.xml"/>
+	<!-- <import file="build_java.xml"/> -->
+</project>
